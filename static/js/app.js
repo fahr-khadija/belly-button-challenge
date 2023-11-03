@@ -72,8 +72,9 @@ function barChart(selection) {
 
 // Function that builds the bubble chart
 function bubbleChart(selection) {
-  // Fetch the JSON data and console log it
+  // Fetch the JSON data 
   d3.json(url).then((data) => {
+    console.log(`Data:`, data);
     // Create an array of sample data set
     let sample1 = data.samples;
 
@@ -92,8 +93,7 @@ function bubbleChart(selection) {
         marker: {
           size: firstSample1.sample_values,
           color: firstSample1.otu_ids,
-          colorscale: "Viridis",
-        },
+          },
       },
     ];
 
@@ -223,33 +223,34 @@ function gaugeChart(selection) {
 
 // function to  plots all charts when we have new selection 
 function plot(selection) {
+  console.log(selection);
   demog(selection);
   barChart(selection);
   bubbleChart(selection);
   gaugeChart(selection);
 }
-
-// initialisation function
+// initation function 
 function init() {
-  // Use D3 to select the dropdown menu
+  // dropdown Menu 
   let dropdownMenu = d3.select("#selDataset");
-
+   
   // Fetch the JSON data and console log it
   d3.json(url).then(function (data) {
-    console.log(data);
+    
     let nameList = data.names;
     nameList.forEach((name) => {
       dropdownMenu.append("option").text(name).property("value", name);
     });
-// init the first item
-    let name = nameList[0];
 
-    demog(name);
-    barChart(name);
-    bubbleChart(name);
-    gaugeChart(name);
+    let initialName = nameList[0];
+    plot(initialName);
+  });
+
+  dropdownMenu.on("change", function () {
+    let selectedName = d3.select("#selDataset").node().value;
+    plot(selectedName);
   });
 }
 
-// Call the initialize function
+
 init();
