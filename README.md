@@ -43,7 +43,7 @@ Adapt the Gauge Chart from
 to plot the weekly washing frequency of the individual.
 
 You will need to modify the example gauge code to account for values ranging from 0 through 9.
--![image](https://github.com/fahr-khadija/belly-button-challenge/blob/main/static/pictures/gauge.png )	
+https://github.com/fahr-khadija/belly-button-challenge/blob/main/static/pictures/gauge
 Update the chart whenever a new sample is selected.
 
 
