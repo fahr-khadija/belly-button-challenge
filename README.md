@@ -22,7 +22,7 @@ Create a bubble chart that displays each sample.
         *Use sample_values for the marker size.
         *Use otu_ids for the marker colors.
         *Use otu_labels for the text values.
-	
+https://github.com/fahr-khadija/belly-button-challenge/blob/main/static/pictures/bubble.png 	
 	
 
  Display the sample metadata, i.e., an individual's demographic information.
