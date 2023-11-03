@@ -13,7 +13,7 @@ Create a horizontal bar chart with a dropdown menu to display the top 10 OTUs fo
 	    *Use otu_ids as the labels for the bar chart.
 	    *Use otu_labels as the hovertext for the chart.
 
-            
+-![image](https://github.com/fahr-khadija/belly-button-challenge/blob/main/static/pictures/chart.png )	          
 
 Create a bubble chart that displays each sample.
 
@@ -22,6 +22,8 @@ Create a bubble chart that displays each sample.
         *Use sample_values for the marker size.
         *Use otu_ids for the marker colors.
         *Use otu_labels for the text values.
+	
+-![image](https://github.com/fahr-khadija/belly-button-challenge/blob/main/static/pictures/bubble.png )	
 
  Display the sample metadata, i.e., an individual's demographic information.
 
@@ -41,7 +43,7 @@ Adapt the Gauge Chart from
 to plot the weekly washing frequency of the individual.
 
 You will need to modify the example gauge code to account for values ranging from 0 through 9.
-
+https://github.com/fahr-khadija/belly-button-challenge/blob/main/static/pictures/gauge
 Update the chart whenever a new sample is selected.
 
 
