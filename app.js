@@ -1,40 +1,9 @@
 // Put our URL in a URL variable
-const url =
-  "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
-
-// Demog function
-function demog(selection) {
-  // Fetch the JSON data and console log it
-  d3.json(url).then((data) => {
-    console.log(`Data:`, data);
-
-    let metadatalist = data.metadata;
-
-    // Filter based on the option selected
-    let metaData = metadatalist.filter((meta) => meta.id == selection);
-
-    // Get the first index from the array
-    let firstDatavalue = metaData[0];
-
-    d3.select("#sample-metadata").html("");
-
-    let selectMetaData = Object.entries(firstDatavalue);
-
-    // Iterate through the selectMetaData array
-    selectMetaData.forEach(([key, value]) => {
-      d3.select("#sample-metadata")
-        .append("h5")
-        .text(`${key}: ${value}`);
-    });
-
-    // Log the entries array
-    console.log(selectMetaData);
-  });
-}
+const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
 
 // Create a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in that individual.
 
-// Function that builds the bar chart
+// Function for  bar chart plotting
 function barChart(selection) {
   // Fetch the JSON data and console log it
   d3.json(url).then((data) => {
@@ -106,117 +75,33 @@ function bubbleChart(selection) {
     Plotly.newPlot("bubble", trace, layout);
   });
 }
-
-function gaugeChart(selection) {
+// demographic function "demog"
+function demog(selection) {
   // Fetch the JSON data and console log it
   d3.json(url).then((data) => {
-    // An array of metadata objects
-    let metadata = data.metadata;
+    console.log(`Data:`, data);
 
-    let metadataList = metadata.filter((meta) => meta.id == selection);
+    let metadatalist = data.metadata;
 
-    let firstMetadata = metadataList[0];
+    // Filter based on the option selected
+    let metaData = metadatalist.filter((meta) => meta.id == selection);
 
-    // Modify the gauge data to suit the range from 0 to 9
-    let level = firstMetadata.wfreq * 20;
+    // Get the first index from the array
+    let firstDatavalue = metaData[0];
 
-    // Trig to calc meter point
-    let degrees = 180 - level,
-      radius = 0.5;
-    let radians = (degrees * Math.PI) / 180;
-    let x = radius * Math.cos(radians);
-    let y = radius * Math.sin(radians);
+    d3.select("#sample-metadata").html("");
 
-    // Path: may have to change to create a better triangle
-    let mainPath = "M -.0 -0.025 L .0 0.025 L ",
-      pathX = String(x),
-      space = " ",
-      pathY = String(y),
-      pathEnd = " Z";
-    let path = mainPath.concat(pathX, space, pathY, pathEnd);
+    let selectMetaData = Object.entries(firstDatavalue);
 
-    // Set up the data for the gauge chart
-    let trace = [
-      {
-        type: "scatter",
-        x: [0],
-        y: [0],
-        marker: { size: 14, color: "850000" },
-        showlegend: false,
-        name: "Washing Frequency",
-        text: level,
-        hoverinfo: "text+name",
-      },
-      {
-        values: [1, 1, 1, 1, 1, 1, 1, 1, 1, 9],
-        rotation: 90,
-        text: [
-          "8-9",
-          "7-8",
-          "6-7",
-          "5-6",
-          "4-5",
-          "3-4",
-          "2-3",
-          "1-2",
-          "0-1",
-          "",
-        ],
-        textinfo: "text",
-        textposition: "inside",
-        marker: {
-          colors: [
-            "rgba(0, 105, 11, .5)",
-            "rgba(10, 120, 22, .5)",
-            "rgba(14, 127, 0, .5)",
-            "rgba(110, 154, 22, .5)",
-            "rgba(170, 202, 42, .5)",
-            "rgba(202, 209, 95, .5)",
-            "rgba(210, 206, 145, .5)",
-            "rgba(232, 226, 202, .5)",
-            "rgba(240, 230, 215, .5)",
-            "rgba(255, 255, 255, 0)",
-          ],
-        },
-        labels: ["8-9", "7-8", "6-7", "5-6", "4-5", "3-4", "2-3", "1-2", "0-1", ""],
-        hoverinfo: "label",
-        hole: 0.5,
-        type: "pie",
-        showlegend: true,
-      },
-    ];
+    // Iterate through the selectMetaData array
+    selectMetaData.forEach(([key, value]) => {
+      d3.select("#sample-metadata")
+        .append("h5")
+        .text(`${key}: ${value}`);
+    });
 
-    // Set up the layout for the gauge chart
-    let layout = {
-      shapes: [
-        {
-          type: "path",
-          path: path,
-          fillcolor: "850000",
-          line: {
-            color: "850000",
-          },
-        },
-      ],
-      title: "<b>Belly Button Washing Frequency</b><br>Scrubs per Week",
-      height: 500,
-      width: 500,
-      xaxis: {
-        zeroline: false,
-        showticklabels: false,
-        showgrid: false,
-        range: [-1, 1],
-      },
-      yaxis: {
-        zeroline: false,
-        showticklabels: false,
-        showgrid: false,
-        range: [-1, 1],
-      },
-    };
-
-    // Plot the data in a gauge chart
-    Plotly.newPlot("gauge", trace, layout);
+    // Log the entries array
+    console.log(selectMetaData);
   });
 }
 
@@ -227,7 +112,7 @@ function plot(selection) {
   demog(selection);
   barChart(selection);
   bubbleChart(selection);
-  gaugeChart(selection);
+  // gaugeChart(selection);
 }
 // initation function 
 function init() {

@@ -31,7 +31,7 @@ Create a bubble chart that displays each sample.
  Update all the plots when a new sample is selected. 
  Additionally, you are welcome to create any layout that you would like for your dashboard. 
  
- An example dashboard is shown as follows:
+
  6-Deploy your app to a free static page hosting service
 
 
